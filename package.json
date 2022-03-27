@@ -1,0 +1,24 @@
+{
+  "name": "airtable_demo",
+  "version": "1.0.0",
+  "description": "Getting data from Airtable",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romain-koenig/airtable_demo.git"
+  },
+  "author": "Romain KOENIG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/romain-koenig/airtable_demo/issues"
+  },
+  "homepage": "https://github.com/romain-koenig/airtable_demo#readme",
+  "dependencies": {
+    "airtable": "^0.11.2",
+    "dotenv": "^16.0.0"
+  }
+}
