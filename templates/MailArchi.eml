@@ -1,0 +1,118 @@
+To: ARCHI_TO
+Cc: ARCHI_CC
+Subject: 🦉❄ [SNOWY OWL] News Archi du SEND_DATE
+X-Unsent: 1
+Content-Type: text/html; charset=UTF-8
+
+<html lang="fr">
+
+<head>
+	<title>Snowy Owl - Archi Reporting</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<!-- Never disable zoom behavior! Fine to set the initial width and scale, but allow users to set their own zoom preferences. -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+</head>
+
+<body
+	style="margin: 0 !important;padding: 0 !important;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;height: 100% !important;width: 100% !important;">
+
+
+	<!-- This ghost table is used to constrain the width in Outlook. The role attribute is set to presentation to prevent it from being read by screenreaders. -->
+	<!--[if (gte mso 9)|(IE)]>
+    <table cellspacing="0" cellpadding="0" border="0" width="700" align="center" role="presentation"><tr><td>
+    <![endif]-->
+	<!-- The role and aria-label attributes are added to wrap the email content as an article for screen readers. Some of them will read out the aria-label as the title of the document, so use something like "An email from Your Brand Name" to make it recognizable. -->
+	<!-- Default styling of text is applied to the wrapper div. Be sure to use text that is large enough and has a high contrast with the background color for people with visual impairments. -->
+	<div role="article" aria-label="Snowy Owl - Archi Reporting" lang="fr"
+		style="color: #2b2b2b; font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; 
+		font-size: 16px;
+		font-weight: 400; line-height: 28px; margin: 0 auto; max-width: 700; padding: 40px 20px 40px 20px;">
+
+<!--font-size: 18px;  -->
+
+		<!-- Logo section and header. Headers are useful landmark elements. -->
+		<header>
+
+			<table
+				style="width: 100%;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse !important;">
+				<tr>
+					<td
+						style="width: 20%;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+						<img src="https://i.imgur.com/kuoVvpm.png" alt="Snowy Owl" height="100" width="100"
+							style="-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;">
+					</td>
+					<td
+						style="text-align: left;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+						
+						<h1 style = "font-size: 48px; margin: 12px 0px 24px 0px; font: Open Sans bold normal; font-weight: 600;">Snowy Owl</h1>
+							<h2 style = "font-size: 24px; margin: 0px 0px 24px 0px;">Archi reporting</p>
+					</td>
+				</tr>
+			</table>
+		</header>
+
+		<!-- Main content section. Main is a useful landmark element. -->
+		<main>
+
+
+			<p>Bonjour l'équipe <br>
+				Voici le récapitulatif de la semaine pour les sujets Archi / IT Solutions.
+				CUSTOM_MESSAGE
+			</p>
+			<p style="text-align: right; font-weight: bold;">📅 Récapitulatif du SEND_DATE</p>
+			<!-- Article elements can be used to section individual articles in an email. -->
+ 
+
+			<!-- Content here -->
+
+			<!-- Footer information. Footer is a useful landmark element. -->
+			<footer>
+				<div style="margin: 80px 0 0 0; padding: 10px 0 0 0;">
+
+				<p>Je reste à votre disposition pour tout complément d'information.</p>
+					<p class="MsoNormal"><span style="mso-bookmark:_MailAutoSig"><b><span style="font-size:13.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+							Calibri;mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;color:#023466;
+							mso-fareast-language:FR;mso-no-proof:yes">Romain KŒNIG</span></b></span><span
+							style="mso-bookmark:_MailAutoSig"><span style="mso-ascii-font-family:Calibri;
+							mso-fareast-font-family:Calibri;mso-hansi-font-family:Calibri;mso-bidi-font-family:
+							Calibri;color:#1F497D;mso-fareast-language:FR;mso-no-proof:yes"> <br>
+							</span></span><span style="mso-bookmark:_MailAutoSig"><i><span style="font-size:10.0pt;mso-ascii-font-family:Calibri;mso-fareast-font-family:
+							Calibri;mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;color:#012A53;
+							mso-fareast-language:FR;mso-no-proof:yes">IT Solutions Architecture – Team
+									Coordinator<o:p></o:p></span></i></span></p>
+
+					<!-- This link uses descriptive text to inform the user what will happen with the link is tapped. -->
+					<!-- It also uses inline styles since some email clients won't render embedded styles from the head. -->
+					<p style="font-size: 12px; font-weight: 400; line-height: 24px; margin-top: 48px;">
+						Ce rapport est archivé sous <a href="LIEN_CONFLUENCE_COMPLET" target="_blank" rel="noopener noreferrer"	style="color: #25c78e;text-decoration: underline;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;font-weight: 600;">Confluence</a><br><br>
+						Vous recevez ce message pour être informé des travaux de l'équipe Architecture, en relation avec
+						les
+						autres équipes IT Solutions.<br>
+						Pour vous désinscrire, merci de <a
+							href="mailto:romain.koenig-ext@pernod-ricard.com?subject=DÉSINSCRIPTION REPORTING ARCHI"
+							style="color: #25c78e;text-decoration: underline;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;font-weight: 600;">m'écrire</a>.
+					</p>
+					
+
+					<p style="text-align: center;">
+					<img src="https://pastepixel.pernod-ricard.io/image/yn6R4UNdzF2e6vdB7dZU.png?cstm_data=ARCHI" alt=""/>
+						<img src="https://i.imgur.com/5nBowl8.png" alt="IT Solutions - Architecture & Innovation"
+							height="120" width="120"
+							style="-ms-interpolation-mode: bicubic;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;">
+
+					</p>
+
+
+
+				</div>
+			</footer>
+
+	</div>
+	<!--[if (gte mso 9)|(IE)]>
+    </td></tr></table>
+    <![endif]-->
+</body>
+
+</html>
