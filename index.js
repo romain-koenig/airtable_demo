@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { logging } = require("./libs/utils");
+const { writeFile } = require("./libs/utils");
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const BASE_ID = process.env.BASE_ID;
@@ -10,28 +11,55 @@ const NEWS_THIS_WEEK_VIEW = process.env.NEWS_THIS_WEEK_VIEW;
 
 (async () => {
 
-	var Airtable = require('airtable');
-	var base = new Airtable({ apiKey: AIRTABLE_API_KEY }).base(BASE_ID);
+	logging(`Before GETDATA`);
+	let rawNewsOfTheWeek = await getData();
+	logging(`After GETDATA`);
 
-	base(NEWS_TABLE_ID).select({
-		// Selecting the first 100 records in All News:
-		maxRecords: 100,
-		view: NEWS_THIS_WEEK_VIEW
-	}).eachPage(function page(records, fetchNextPage) {
-		// This function (`page`) will get called for each page of records.
+	let cleanNewsOfTheWeek = [];
 
-		records.forEach(function (record) {
-			logging(`Retrieved ${record.get('Name')}`);
-			logging(JSON.stringify(record));
-		});
 
-		// To fetch the next page of records, call `fetchNextPage`.
-		// If there are more records, `page` will get called again.
-		// If there are no more records, `done` will get called.
-		fetchNextPage();
+	let content = "";
 
-	}, function done(err) {
-		if (err) { loggingError(err); return; }
-	});
+	for (let index = 0; index < rawNewsOfTheWeek.length; index++) {
+		logging(rawNewsOfTheWeek[index]);
+
+		let news = {
+			title: rawNewsOfTheWeek[index].get('Name'),
+			content: rawNewsOfTheWeek[index].get('Notes'),
+			snake: rawNewsOfTheWeek[index].get('SNAKE_A')
+		};
+
+		cleanNewsOfTheWeek.push(news);
+
+		content = content.concat(JSON.stringify(news).concat('\n'));
+	}
+
+
+	writeFile('./temp.json', content)
 
 })();
+
+
+function getData(params) {
+	return new Promise((resolve, reject) => {
+
+		var Airtable = require('airtable');
+		var base = new Airtable({ apiKey: AIRTABLE_API_KEY }).base(BASE_ID);
+
+		base(NEWS_TABLE_ID).select({
+			// Selecting the first 100 records in All News:
+			maxRecords: 100,
+			view: NEWS_THIS_WEEK_VIEW
+		}).eachPage(function page(records, fetchNextPage) {
+			// This function (`page`) will get called for each page of records.
+
+			resolve(records);
+
+			fetchNextPage();
+
+		}, function done(err) {
+			if (err) { loggingError(err); return; }
+		});
+
+	});
+}
