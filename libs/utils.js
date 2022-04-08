@@ -4,7 +4,7 @@ const logging = content => console.log(content);
 exports.logging = logging;
 
 const loggingError = content => console.error(content);
-exports.logging = loggingError;
+exports.loggingError = loggingError;
 
 const writeFile = (filePath, content) => {
 	fsLibrary.writeFile(filePath, content, (error) => {
