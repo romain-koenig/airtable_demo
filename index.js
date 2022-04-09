@@ -26,7 +26,7 @@ const RECIPIENTS_VIEW = process.env.RECIPIENTS_VIEW;
 	// let rawTeams = await getRawDataFromAirtable(TEAMS_TABLE_ID, TEAMS_VIEW);
 	let rawRecipients = await getRawDataFromAirtable(RECIPIENTS_TABLE_ID, RECIPIENTS_VIEW);
 
-	logging(rawNewsOfTheWeek);
+	//logging(rawNewsOfTheWeek);
 
 	logging("-------------------");
 
@@ -38,6 +38,8 @@ const RECIPIENTS_VIEW = process.env.RECIPIENTS_VIEW;
 			teams: news.get('Teams')
 		};
 	});
+
+	cleanedNewsOfTheWeek.map(news => logging(`${news.title} - ${news.content} - ${news.snake} - ${news.teams}`));
 
 	// const cleanedTeams = rawTeams.map(team => {
 	// 	return {
@@ -54,7 +56,7 @@ const RECIPIENTS_VIEW = process.env.RECIPIENTS_VIEW;
 			team: recipient.get('Team')
 		}
 	});
-	logging(cleanedTeams);
+	//	logging(cleanedTeams);
 	logging(cleanedRecipients.map(recipient => {
 		return `${recipient.name} - ${recipient.mail} - ${recipient.team}`
 	})
@@ -73,8 +75,17 @@ const RECIPIENTS_VIEW = process.env.RECIPIENTS_VIEW;
 		else {
 			const template = data.toString();
 
-			const content = template.replace('<!-- Content here -->', newsInMail.join("\n")
+			let content = template.replace('<!-- Content here -->', newsInMail.join("\n")
 			);
+
+			content = content.replace("ARCHI_TO", cleanedRecipients.filter(recipient => { return recipient.team == "Architecture & Innovation" })
+				.reduce((a, b) => a.concat(`=?UTF-8?Q?${b.name}?= <${b.mail}> ; `), ""));
+
+			content = content.replace("ARCHI_CC", cleanedRecipients.filter(recipient => { return recipient.mail == "laurent.bel@pernod-ricard.com" })
+				.reduce((a, b) => a.concat(`=?UTF-8?Q?${b.name}?= <${b.mail}> ; `), ""));
+
+			const now = new Date(Date.now());
+			content = content.replace("SEND_DATE", `${now.getDate()}/${now.getMonth()}/${now.getFullYear()}`);
 
 			writeFile('./out.eml', content);
 		}
@@ -91,7 +102,7 @@ function printNewsMail(news, isWithTeam) {
 	const bloc = template.replace("SUBJECT_TITLE", news.title)
 		.replace("TEAMS_HERE", news.teams.join(" - "))
 		.replace("DESCRIPTION_HERE", news.content)
-		.replace("SNAKE_LINKS_HERE", news.snake.join("<br>"))
+		.replace("SNAKE_LINKS_HERE", news.snake)
 		.replace(/\n/g, '<br/>');
 
 
