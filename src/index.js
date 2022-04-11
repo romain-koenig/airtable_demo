@@ -58,6 +58,9 @@ const RECIPIENTS_VIEW = process.env.RECIPIENTS_VIEW;
 			team: recipient.get('Team')
 		}
 	});
+
+	writeFile("./data/recipients.json", JSON.stringify(cleanedRecipients));
+
 	//	logging(cleanedTeams);
 	logging(cleanedRecipients.map(recipient => {
 		return `${recipient.name} - ${recipient.mail} - ${recipient.team}`
