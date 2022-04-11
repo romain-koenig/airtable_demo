@@ -33,9 +33,10 @@ const presentationSnippet = "<section data-background-image=\"..\/pics\/Blanc.pn
 data-background-size=\"100px\"\
 data-background-position=\"98% 90%\">\
 <h2>PROJECT_HERE</h2>\n\
-<h3>TITLE_HERE</h3>\n\
 <small>TEAM_LIST_HERE</small>\n\
-<p class=\"r-fit-text\">CONTENT_HERE</p>\
-<p class=\"r-fit-text\">SNAKE_HERE</p>\
+<h3>TITLE_HERE</h3>\n\
+<p class=\"r-fit-text\">CONTENT_HERE<br>\
+SNAKE_HERE\
+</p>\
 </section>"
 exports.presentationSnippet = presentationSnippet;
