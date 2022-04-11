@@ -32,6 +32,7 @@ const RECIPIENTS_VIEW = process.env.RECIPIENTS_VIEW;
 
 	const cleanedNewsOfTheWeek = rawNewsOfTheWeek.map(news => {
 		return {
+			project: news.get('PROJECT_NAME'),
 			title: news.get('Name'),
 			content: news.get('Notes'),
 			snake: news.get('SNAKE_A'),
