@@ -4,7 +4,9 @@
   "description": "Getting data from Airtable",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "npm run getdata",
+    "getdata": "node src/index.js",
+    "presentation": "node src/presentation.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

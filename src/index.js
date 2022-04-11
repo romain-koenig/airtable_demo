@@ -39,6 +39,8 @@ const RECIPIENTS_VIEW = process.env.RECIPIENTS_VIEW;
 		};
 	});
 
+	writeFile("./data/newsOfTheWeek.json", JSON.stringify(cleanedNewsOfTheWeek));
+
 	cleanedNewsOfTheWeek.map(news => logging(`${news.title} - ${news.content} - ${news.snake} - ${news.teams}`));
 
 	// const cleanedTeams = rawTeams.map(team => {
@@ -66,7 +68,7 @@ const RECIPIENTS_VIEW = process.env.RECIPIENTS_VIEW;
 
 	writeFile('./temp.html', newsInMail.join(""));
 
-	const templateFile = "./templates/MailArchi.eml"
+	const templateFile = "./src/templates/MailArchi.eml"
 	fsLibrary.readFile(templateFile, (error, data) => {
 		// In case of a error throw err exception. 
 		if (error) {
