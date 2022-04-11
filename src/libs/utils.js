@@ -1,4 +1,4 @@
-const fsLibrary = require('fs');
+const fsLibrary = require('fs').promises;
 
 const logging = content => console.log(content);
 exports.logging = logging;
@@ -14,3 +14,9 @@ const writeFile = (filePath, content) => {
 	});
 };
 exports.writeFile = writeFile;
+
+const readFile = async (filePath) => {
+	const data = await fsLibrary.readFile(filePath, 'utf8');
+	return data;
+}
+exports.readFile = readFile;
