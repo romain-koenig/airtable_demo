@@ -1,4 +1,4 @@
-const fs = require('fs');
+const { copyFile } = require('fs/promises');
 const { readFile, logging, writeFile } = require("./libs/utils");
 const { presentationSnippet } = require('./templates/snippets/htmlSnippets');
 
@@ -9,11 +9,7 @@ const { presentationSnippet } = require('./templates/snippets/htmlSnippets');
 	 * Copy of CSS source file into output folder
 	 */
 
-
-	// const cssSource = fs.createReadStream('./src/templates/reveal.js/PR.css');
-	// const cssDestination = fs.createWriteStream('./output/PR.css');
-
-	// cssDestination.pipe(cssSource);
+	copyFile("./src/templates/reveal.js/PR.css", "./output/PR.css")
 
 
 	/**
@@ -32,8 +28,8 @@ const { presentationSnippet } = require('./templates/snippets/htmlSnippets');
 		return snippet.replace("PROJECT_HERE", pieceOfNews.project.join(" - "))
 			.replace("TITLE_HERE", pieceOfNews.title)
 			.replace("TEAM_LIST_HERE", pieceOfNews.teams.join(" / "))
-			.replace("CONTENT_HERE", pieceOfNews.content)
-			.replace("SNAKE_HERE", pieceOfNews.snake === undefined ? "" : pieceOfNews.snake.join("<br>"))
+			.replace("CONTENT_HERE", pieceOfNews.content.replace(/\n/g, '<br>'))
+			.replace("SNAKE_HERE", pieceOfNews.snake === undefined ? "" : `<br>${pieceOfNews.snake.join("<br>")}`)
 	})
 
 	logging("Map has been made");
