@@ -102,10 +102,13 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Test / temp files
 temp.json
 out.eml
 temp.html
 data/newsOfTheWeek.json
 data/recipients.json
+data/teams.json
 output/PR.css
 output/presentation.html
