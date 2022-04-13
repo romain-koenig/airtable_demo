@@ -17,18 +17,25 @@ const TEAMS_VIEW = process.env.TEAMS_VIEW;
 
 const RECIPIENTS_TABLE_ID = process.env.RECIPIENTS_TABLE_ID;
 const RECIPIENTS_VIEW = process.env.RECIPIENTS_VIEW;
+
+const TEMPLATES_MAIL_TABLE_ID = process.env.TEMPLATES_MAIL_TABLE_ID;
+const TEMPLATES_MAIL_VIEW = process.env.TEMPLATES_MAIL_VIEW;
 // REAL TREATMENT STARTS HERE
 
 (async () => {
 
-	let rawNewsOfTheWeek = await getRawDataFromAirtable(NEWS_TABLE_ID, NEWS_THIS_WEEK_VIEW);
+	logging("Get DATA from AIRTABLE");
 
-	// let rawTeams = await getRawDataFromAirtable(TEAMS_TABLE_ID, TEAMS_VIEW);
-	let rawRecipients = await getRawDataFromAirtable(RECIPIENTS_TABLE_ID, RECIPIENTS_VIEW);
+	const rawNewsOfTheWeek = await getRawDataFromAirtable(NEWS_TABLE_ID, NEWS_THIS_WEEK_VIEW);
+	const rawTeams = await getRawDataFromAirtable(TEAMS_TABLE_ID, TEAMS_VIEW);
+	const rawRecipients = await getRawDataFromAirtable(RECIPIENTS_TABLE_ID, RECIPIENTS_VIEW);
 
-	//logging(rawNewsOfTheWeek);
+	const rawTemplates = await getRawDataFromAirtable(TEMPLATES_MAIL_TABLE_ID, TEMPLATES_MAIL_VIEW);
 
-	logging("-------------------");
+	writeFile("./temp.json", JSON.stringify(rawRecipients));
+
+
+	logging("Cleaning DATA");
 
 	const cleanedNewsOfTheWeek = rawNewsOfTheWeek.map(news => {
 		return {
@@ -42,29 +49,42 @@ const RECIPIENTS_VIEW = process.env.RECIPIENTS_VIEW;
 
 	writeFile("./data/newsOfTheWeek.json", JSON.stringify(cleanedNewsOfTheWeek));
 
-	cleanedNewsOfTheWeek.map(news => logging(`${news.title} - ${news.content} - ${news.snake} - ${news.teams}`));
-
-	// const cleanedTeams = rawTeams.map(team => {
-	// 	return {
-	// 		name: team.get('Name'),
-	// 		shortName: team.get('Nom Court')
-	// 	}
-	// }
-	// );
+	const cleanedTeams = rawTeams.map(team => {
+		return {
+			name: team.get('Name'),
+			shortName: team.get('Nom Court')
+		}
+	}
+	);
+	writeFile("./data/teams.json", JSON.stringify(cleanedTeams));
 
 	const cleanedRecipients = rawRecipients.map(recipient => {
 		return {
 			name: recipient.get('Name'),
 			mail: recipient.get('mail'),
-			team: recipient.get('Team')
+			teamName: recipient.get('TEAM_NAME'),
+			teamShortName: recipient.get('TEAM_SHORT_NAME')
 		}
 	});
 
+	writeFile("./temp.json", JSON.stringify(rawRecipients));
+	writeFile("./tempClean.json", JSON.stringify(cleanedRecipients));
+
 	writeFile("./data/recipients.json", JSON.stringify(cleanedRecipients));
+
+	const cleanedTemplates = rawTemplates.map(template => {
+		return {
+			id: template.get('ID'),
+			template_link: template.get('TEMPLATE_LINK'),
+			teamName: template.get('TEAM_NAME'),
+			teamShortName: template.get('TEAM_SHORT_NAME')
+		}
+	})
+
 
 	//	logging(cleanedTeams);
 	logging(cleanedRecipients.map(recipient => {
-		return `${recipient.name} - ${recipient.mail} - ${recipient.team}`
+		return `${recipient.name} - ${recipient.mail} - ${recipient.teamShortName}`
 	})
 		.reduce((a, b) => a.concat(['\n', b])));
 
