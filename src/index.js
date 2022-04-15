@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { logging } = require("./libs/utils");
+const { logging, download } = require("./libs/utils");
 const { writeFile } = require("./libs/utils");
 const fsLibrary = require('fs');
 
@@ -32,7 +32,7 @@ const TEMPLATES_MAIL_VIEW = process.env.TEMPLATES_MAIL_VIEW;
 
 	const rawTemplates = await getRawDataFromAirtable(TEMPLATES_MAIL_TABLE_ID, TEMPLATES_MAIL_VIEW);
 
-	writeFile("./temp.json", JSON.stringify(rawRecipients));
+	writeFile("./temp.json", JSON.stringify(rawTemplates));
 
 
 	logging("Cleaning DATA");
@@ -67,12 +67,9 @@ const TEMPLATES_MAIL_VIEW = process.env.TEMPLATES_MAIL_VIEW;
 		}
 	});
 
-	writeFile("./temp.json", JSON.stringify(rawRecipients));
-	writeFile("./tempClean.json", JSON.stringify(cleanedRecipients));
-
 	writeFile("./data/recipients.json", JSON.stringify(cleanedRecipients));
 
-	const cleanedTemplates = rawTemplates.map(template => {
+	const cleanedTemplates = await rawTemplates.map(template => {
 		return {
 			id: template.get('ID'),
 			template_link: template.get('TEMPLATE_LINK'),
@@ -81,12 +78,25 @@ const TEMPLATES_MAIL_VIEW = process.env.TEMPLATES_MAIL_VIEW;
 		}
 	})
 
+	writeFile("./data/templates.json", JSON.stringify(cleanedTemplates));
+
+	cleanedTemplates.map(template => {
+
+		const templateLink = template.template_link[0];
+
+		logging(`Downloading from ${templateLink.url}`);
+		logging(`Template : ${JSON.stringify(template)}`);
+
+		download(templateLink.url, `./data/templates/${templateLink.filename}`)
+
+	})
+
 
 	//	logging(cleanedTeams);
 	logging(cleanedRecipients.map(recipient => {
-		return `${recipient.name} - ${recipient.mail} - ${recipient.teamShortName}`
+		return `${recipient.mail} - ${recipient.name} - ${recipient.teamShortName}`
 	})
-		.reduce((a, b) => a.concat(['\n', b])));
+		.reduce((a, b) => a.concat(['\n', b]), ""));
 
 	const newsInMail = cleanedNewsOfTheWeek.map(news => printNewsMail(news, true));
 

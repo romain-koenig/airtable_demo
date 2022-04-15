@@ -1,4 +1,6 @@
 const fsLibrary = require('fs').promises;
+const fs = require('fs');
+const request = require('request');
 
 const logging = content => console.log(content);
 exports.logging = logging;
@@ -20,3 +22,32 @@ const readFile = async (filePath) => {
 	return data;
 }
 exports.readFile = readFile;
+
+
+
+const download = async (url, dest) => {
+
+	/* Create an empty file where we can save data */
+	const file = fs.createWriteStream(dest);
+
+	/* Using Promises so that we can use the ASYNC AWAIT syntax */
+	await new Promise((resolve, reject) => {
+		request({
+			/* Here you should specify the exact link to the file you are trying to download */
+			uri: url,
+			gzip: false,
+		})
+			.pipe(file)
+			.on('finish', async () => {
+				console.log(`The file is finished downloading.`);
+				resolve();
+			})
+			.on('error', (error) => {
+				reject(error);
+			});
+	})
+		.catch((error) => {
+			console.log(`Something happened: ${error}`);
+		});
+}
+exports.download = download;
