@@ -1,5 +1,5 @@
 const { copyFile } = require('fs/promises');
-const { readFile, logging, writeFile } = require("./libs/utils");
+const { readFile, logging, writeFile, printRecipients } = require("./libs/utils");
 
 
 logging("Starting Mail generation");
@@ -28,11 +28,7 @@ logging("Starting Mail generation");
 		// logging(`Templates : ${JSON.stringify(template)}`);
 
 
-		logging(
-			currentRecipients.map(recipient => {
-				return `${recipient.mail} - ${recipient.name} - ${recipient.teamShortName}`
-			})
-				.reduce((a, b) => a.concat(`${b}\n`), ""));
+		printRecipients(currentRecipients);
 
 	})
 

@@ -51,3 +51,13 @@ const download = async (url, dest) => {
 		});
 }
 exports.download = download;
+
+
+const printRecipients = (currentRecipients) => {
+	logging(
+		currentRecipients.map(recipient => {
+			return `${recipient.mail} - ${recipient.name} - ${recipient.teamShortName}`;
+		})
+			.reduce((a, b) => a.concat(`${b}\n`), ""));
+}
+exports.printRecipients = printRecipients;

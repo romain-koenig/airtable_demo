@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { logging, download } = require("./libs/utils");
+const { logging, download, printRecipients } = require("./libs/utils");
 const { writeFile } = require("./libs/utils");
 const fsLibrary = require('fs');
 
@@ -93,10 +93,7 @@ const TEMPLATES_MAIL_VIEW = process.env.TEMPLATES_MAIL_VIEW;
 
 
 	//	logging(cleanedTeams);
-	logging(cleanedRecipients.map(recipient => {
-		return `${recipient.mail} - ${recipient.name} - ${recipient.teamShortName}`
-	})
-		.reduce((a, b) => a.concat(['\n', b]), ""));
+	printRecipients(cleanedRecipients);
 
 	const newsInMail = cleanedNewsOfTheWeek.map(news => printNewsMail(news, true));
 
