@@ -114,3 +114,4 @@ output/PR.css
 output/presentation.html
 tempClean.json
 data/templates.json
+data/templates/*.eml
