@@ -74,7 +74,8 @@ const TEMPLATES_MAIL_VIEW = process.env.TEMPLATES_MAIL_VIEW;
 			id: template.get('ID'),
 			template_link: template.get('TEMPLATE_LINK'),
 			teamName: template.get('TEAM_NAME'),
-			teamShortName: template.get('TEAM_SHORT_NAME')
+			teamShortName: template.get('TEAM_SHORT_NAME'),
+			printTeam: template.get('PRINT_TEAMS')
 		}
 	})
 

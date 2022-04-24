@@ -9,24 +9,17 @@ logging("Starting Mail generation");
 	const templatesFile = await readFile("./data/templates.json");
 	const templates = JSON.parse(templatesFile);
 
-
 	const recipientsFile = await readFile("./data/recipients.json");
 	const recipients = JSON.parse(recipientsFile);
 
-	logging(`Template file : ${templates}`);
+	const newsFile = await readFile("./data/newsOfTheWeek.json");
+	const news = JSON.parse(newsFile);
 
-	templates.map(template => {
+	templates.map(teamTemplate => {
 
 		const currentRecipients = recipients.filter(recipient => {
-			logging(`Comparing ${template.teamName[0]} and ${recipient.teamName} : ${template.teamName[0] == recipient.teamName}`)
-			return template.teamName[0] == recipient.teamName;
+			return teamTemplate.teamName[0] == recipient.teamName;
 		});
-
-
-		// logging(`All recipients : ${JSON.stringify(recipients)}`);
-		logging(`Current (filtered) recipients : ${JSON.stringify(currentRecipients)}`);
-		// logging(`Templates : ${JSON.stringify(template)}`);
-
 
 		printRecipients(currentRecipients);
 
